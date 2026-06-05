@@ -1,0 +1,28 @@
+name: LaTeX
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile and validate manuscript
+        uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: make check
+
+      - name: Upload manuscript PDF
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-pdf
+          path: main.pdf
+          if-no-files-found: ignore

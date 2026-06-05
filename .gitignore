@@ -1,0 +1,50 @@
+# LaTeX build products
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# REVTeX-generated bibliography notes
+mainNotes.bib
+
+# Generated manuscript PDF.
+# Figure PDFs under figs/ are source assets and should be committed.
+/main.pdf
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary output directories
+build/
+dist/
+tmp/
