@@ -74,7 +74,7 @@ For an existing manuscript repository, do not copy files manually from a local c
 ```sh
 git remote add template https://github.com/DeePTB-Lab/latex-manuscript-template.git
 git fetch template
-git checkout template/main -- .github scripts .latexmkrc .gitignore .editorconfig
+git checkout template/master -- .github scripts .latexmkrc .gitignore .editorconfig
 git remote remove template
 ```
 
@@ -83,7 +83,7 @@ This intentionally avoids overwriting article-specific files such as `main.tex`,
 If the existing manuscript repository does not have a `Makefile`, import the template Makefile too:
 
 ```sh
-git checkout template/main -- Makefile
+git checkout template/master -- Makefile
 ```
 
 If the existing manuscript already has a `Makefile`, merge the relevant targets manually rather than overwriting it.

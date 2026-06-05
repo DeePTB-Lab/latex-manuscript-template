@@ -74,7 +74,7 @@ make ENGINE=lualatex
 ```sh
 git remote add template https://github.com/DeePTB-Lab/latex-manuscript-template.git
 git fetch template
-git checkout template/main -- .github scripts .latexmkrc .gitignore .editorconfig
+git checkout template/master -- .github scripts .latexmkrc .gitignore .editorconfig
 git remote remove template
 ```
 
@@ -83,7 +83,7 @@ git remote remove template
 如果已有论文仓库没有 `Makefile`，也可以导入模板中的 Makefile：
 
 ```sh
-git checkout template/main -- Makefile
+git checkout template/master -- Makefile
 ```
 
 如果已有论文仓库已经有自己的 `Makefile`，请手动合并相关 target，不要直接覆盖。

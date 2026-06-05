@@ -49,7 +49,7 @@ Existing manuscript repos must NOT copy files from a local checkout. They import
 ```sh
 git remote add template https://github.com/DeePTB-Lab/latex-manuscript-template.git
 git fetch template
-git checkout template/main -- .github scripts .latexmkrc .gitignore .editorconfig
+git checkout template/master -- .github scripts .latexmkrc .gitignore .editorconfig
 git remote remove template
 ```
 
