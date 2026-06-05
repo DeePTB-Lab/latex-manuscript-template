@@ -6,6 +6,8 @@ on:
 
 permissions:
   contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   check:
@@ -20,9 +22,69 @@ jobs:
           run: make check
 
       - name: Upload manuscript PDF
+        id: upload-pdf
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: manuscript-pdf
+          name: main.pdf
           path: main.pdf
           if-no-files-found: ignore
+          retention-days: 3
+          archive: false
+
+      - name: Add PDF link to job summary
+        if: always() && steps.upload-pdf.outputs.artifact-url != ''
+        run: |
+          {
+            echo "## Compiled PDF"
+            echo
+            echo "[Download main.pdf](${{ steps.upload-pdf.outputs.artifact-url }})"
+            echo
+            echo "PDF artifact will be retained for 3 days."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Comment PDF link on PR
+        if: github.event_name == 'pull_request' && steps.upload-pdf.outputs.artifact-url != ''
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const marker = '<!-- latex-template-pdf-artifact -->';
+            const artifactUrl = '${{ steps.upload-pdf.outputs.artifact-url }}';
+            const pr = context.payload.pull_request;
+
+            const body = [
+              marker,
+              'LaTeX 编译已完成。',
+              '',
+              `[下载编译后的 PDF](${artifactUrl})`,
+              '',
+              `Commit: \`${context.sha.slice(0, 7)}\``,
+              '',
+              'PDF artifact 将保留 3 天。',
+            ].join('\n');
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+            });
+
+            const existing = comments.find((comment) =>
+              comment.user.type === 'Bot' && comment.body.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body,
+              });
+            }
