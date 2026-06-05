@@ -35,6 +35,10 @@ mainNotes.bib
 # Figure PDFs under figs/ are source assets and should be committed.
 /main.pdf
 
+# Python caches
+__pycache__/
+*.py[cod]
+
 # Local editor and OS files
 .DS_Store
 Thumbs.db
