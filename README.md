@@ -1,5 +1,7 @@
 # LaTeX Manuscript Template
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 Reusable LaTeX manuscript template for DeePTB-Lab papers.
 
 This repository is intended to serve as a starting point for scientific writing projects. It includes a REVTeX 4.2 manuscript skeleton, bibliography and figure conventions, local build commands, and pull-request checks for common LaTeX and bibliography issues.
@@ -49,9 +51,25 @@ The current example uses Chinese text through `ctex`, so it builds with XeLaTeX 
 
 ## Using This Template
 
-For a new manuscript, create the repository from this GitHub template repository. After creation, replace the example manuscript content in `main.tex`, update `ref.bib`, add figures under `figs/`, and rewrite the manuscript-specific parts of `README.md`.
+This repository is meant to support one GitHub repository per manuscript. Use the template repository for new papers, and import only the shared infrastructure for existing paper repositories.
 
-For an existing manuscript repository, do not copy files from a local checkout of this repository. Instead, add the remote template repository temporarily and import only the shared infrastructure:
+### Starting a new manuscript repository
+
+The recommended workflow is to enable **Template repository** in this repository's GitHub settings and create each new paper with **Use this template**.
+
+After creating the new manuscript repository:
+
+1. Replace the example content in `main.tex`.
+2. Replace or extend `ref.bib` with the paper's bibliography.
+3. Replace `figs/placeholder.pdf` with the paper's figures under `figs/`.
+4. Rewrite this README so it describes the specific manuscript rather than the template.
+5. Run `make check` before opening the first pull request.
+
+The shared infrastructure copied from the template includes `.github/`, `scripts/`, `.latexmkrc`, `Makefile`, `.gitignore`, and `.editorconfig`.
+
+### Adding template infrastructure to an existing manuscript repository
+
+For an existing manuscript repository, do not copy files manually from a local checkout of this template. Instead, add this repository as a temporary remote and import only the shared infrastructure:
 
 ```sh
 git remote add template https://github.com/DeePTB-Lab/latex-manuscript-template.git
@@ -60,7 +78,15 @@ git checkout template/main -- .github scripts .latexmkrc .gitignore .editorconfi
 git remote remove template
 ```
 
-Do not blindly overwrite article-specific files such as `main.tex`, `ref.bib`, `figs/`, or manuscript-specific README content. Merge `Makefile` manually if the existing manuscript already has local build targets.
+This intentionally avoids overwriting article-specific files such as `main.tex`, `ref.bib`, `figs/`, and manuscript-specific README content.
+
+If the existing manuscript repository does not have a `Makefile`, import the template Makefile too:
+
+```sh
+git checkout template/main -- Makefile
+```
+
+If the existing manuscript already has a `Makefile`, merge the relevant targets manually rather than overwriting it.
 
 ## Pull-Request Checks
 

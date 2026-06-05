@@ -144,18 +144,15 @@ pra,
 \begin{document}
 \title{标题示例：使用RevTeX4-2撰写科学论文的模板}
 
-\author{Guanghui Wang}
-\affiliation{School of Artificial Intelligence and Data Science, University of Science and Technology of China, Hefei 230026, China}
-\affiliation{Suzhou Institute for Advanced Research, University of Science and Technology of China, Suzhou 215123, China}
-\affiliation{Suzhou Big Data \& AI Research and Engineering Center, Suzhou 215123, China}
+\author{Alice Example}
+\affiliation{Department of Physics, Example University, Example City 123456, Country}
+\affiliation{Example Institute for Advanced Research, Example City 123456, Country}
 
 
-\author{Qiangqiang Gu}
-\email{guqq@ustc.edu.cn}
-\affiliation{School of Artificial Intelligence and Data Science, University of Science and Technology of China, Hefei 230026, China}
-\affiliation{Suzhou Institute for Advanced Research, University of Science and Technology of China, Suzhou 215123, China}
-%\affiliation{AI for Science Institute, Beijing 100080, China}
-\affiliation{Suzhou Big Data \& AI Research and Engineering Center, Suzhou 215123, China}
+\author{Bob Researcher}
+\email{corresponding.author@example.edu}
+\affiliation{Department of Physics, Example University, Example City 123456, Country}
+\affiliation{Example Institute for Advanced Research, Example City 123456, Country}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
@@ -172,6 +169,11 @@ pra,
 交叉引用通常通过 \verb|\label| 和 \verb|\ref| 完成。
 例如，式~\eqref{eq:sample-energy} 给出了一个简单的能量表达式，
 图~\ref{fig:fig1} 展示了如何插入图片。
+
+
+图片文件建议放在 \verb|figs/| 目录下。插图示例如下：
+
+
 
 \section{Methods}
 
@@ -193,9 +195,7 @@ pra,
 
 \section{Results}
 
-图片文件建议放在 \verb|figs/| 目录下。插图示例如下：
-
-\begin{figure}[t]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width= 7cm]{figs/placeholder.pdf}
   \caption{占位图片示例。将实际图片放入 \texttt{figs/} 后，替换这里的文件名即可。}

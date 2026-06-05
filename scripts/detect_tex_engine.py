@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 
-CJK_RE = re.compile(r"[㐀-䶿一-鿿豈-﫿]")
+CJK_RE = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
 XELATEX_PACKAGE_RE = re.compile(r"\\usepackage(?:\[[^\]]*\])?\{[^}]*\b(?:ctex|xeCJK|fontspec)\b[^}]*\}")
 LUALATEX_PACKAGE_RE = re.compile(r"\\usepackage(?:\[[^\]]*\])?\{[^}]*\b(?:luatexja|luacode)\b[^}]*\}")
 
